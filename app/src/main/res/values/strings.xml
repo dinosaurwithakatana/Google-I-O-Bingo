@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Google I/O Bingo</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="bingo_entries">
+        <item>Matias Duarte wearing a crazy shirt</item>
+        <item>New wearable hardware</item>
+        <item>The self-driving car</item>
+        <item>Android multi-window support</item>
+        <item>Sundar Pichai steepling his hands while talking</item>
+        <item>Android performance improvements</item>
+        <item>Android M Dev Preview announced</item>
+        <item>Joke/hint about what "M" stands for</item>
+        <item>Sundar Pichai opening and closing his hands while talking</item>
+        <item>Material design news</item>
+        <item>Android Auto update</item>
+        <item>Android for Work update</item>
+        <item>Google Fi</item>
+        <item>Polymer updates</item>
+        <item>Google App Engine update</item>
+        <item>More Android / ChromeOS integration</item>
+        <item>Chromecast updates</item>
+        <item>An elaborate countdown timer</item>
+        <item>New Chromecast hardware</item>
+        <item>New Glass hardware</item>
+        <item>Android One update</item>
+        <item>Android TV update</item>
+        <item>Android TV rebrand/cancellation</item>
+        <item>Fake and funny emails or text messages</item>
+        <item>Mention of Nexus line</item>
+        <item>New Nexus device(s)</item>
+        <item>New developer simulator</item>
+        <item>Free failed/will fail Google product</item>
+        <item>Free Nexus 6</item>
+        <item>Free Chromecast</item>
+        <item>No giveaway at all</item>
+        <item>Panned shots of the crowd</item>
+        <item>Charitable or humanitarian Google work</item>
+        <item>Protester interruption</item>
+        <item>Chrome experiment</item>
+        <item>Live demo</item>
+        <item>Failed live demo</item>
+        <item>Dig at rival platform</item>item>
+        <item>"network problems"</item>
+        <item>Android device activation stats</item>
+        <item>Google Photos unveiling</item>
+        <item>Difficulties with the live stream</item>
+        <item>People sitting on a couch</item>
+        <item>Something to do with VR</item>
+        <item>Developer revenue stats</item>
+        <item>List of hardware partner</item>
+    </string-array>
+</resources>

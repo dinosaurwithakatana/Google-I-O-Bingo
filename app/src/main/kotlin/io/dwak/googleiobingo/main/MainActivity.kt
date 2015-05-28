@@ -55,13 +55,13 @@ class MainActivity : MvpActivity<MainPresenterImpl>(), MainView, AnkoLogger {
         adapter.setItems(bingoEntries)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         getMenuInflater().inflate(R.menu.menu_main, menu)
         return super<MvpActivity>.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.getItemId()){
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.getItemId()){
             R.id.action_regenerate_board -> {
                 alert("This will clear your current board", null) {
                     positiveButton("Ok") { presenter.getBingo(getResources().getStringArray(R.array.bingo_entries), true) }

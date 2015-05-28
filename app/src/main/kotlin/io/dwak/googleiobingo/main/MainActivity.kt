@@ -3,18 +3,24 @@ package io.dwak.googleiobingo.main
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
+import android.support.v7.widget.Toolbar
 import butterknife.bindView
-import io.dwak.googleiobingo.*
+import io.dwak.googleiobingo.R
+import io.dwak.googleiobingo.adapter
+import io.dwak.googleiobingo.layoutManager
+import io.dwak.googleiobingo.model.BingoEntry
 import io.dwak.googleiobingo.view.MainView
 import io.dwak.meh.base.MvpActivity
+import kotlinx.android.anko.AnkoLogger
 import java.util.ArrayList
 
-class MainActivity : MvpActivity<MainPresenterImpl>(), MainView {
+class MainActivity : MvpActivity<MainPresenterImpl>(), MainView, AnkoLogger {
     override val presenterClass: Class<MainPresenterImpl> = javaClass()
-    val recyclerView : RecyclerView by bindView(R.id.recycler_view)
+
+    val toolbar: Toolbar by bindView(R.id.toolbar)
+    val recyclerView: RecyclerView by bindView(R.id.recycler_view)
     val layoutManager = GridLayoutManager(this, 5)
-    val adapter = BingoAdapter(this)
+    var adapter = BingoAdapter(this)
 
     override fun setView() {
         presenter.view = this
@@ -24,15 +30,25 @@ class MainActivity : MvpActivity<MainPresenterImpl>(), MainView {
         super<MvpActivity>.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setSupportActionBar(toolbar)
+
+        var onItemClickListener = object : BingoAdapter.Companion.BingoAdapterItemClickListener {
+            override fun onItemClick(position: Int) {
+                adapter.toggleItemClick(position)
+                presenter.toggleItemClick(adapter.list.get(position))
+            }
+        }
+        adapter.itemClickListener = onItemClickListener
+
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
         recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST))
 
-        presenter.generateBingo(getResources().getStringArray(R.array.bingo_entries))
+        presenter.getBingo(getResources().getStringArray(R.array.bingo_entries))
     }
 
-    override fun displayBingo(bingoEntries: ArrayList<String>) {
-        Log.d("wodihw", bingoEntries.toString())
+    override fun displayBingo(bingoEntries: ArrayList<BingoEntry>) {
+        debug(bingoEntries)
         adapter.list.addAll(bingoEntries)
     }
 

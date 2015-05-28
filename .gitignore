@@ -24,3 +24,5 @@ proguard/
 
 .idea/
 *.iml
+
+keystore.properties

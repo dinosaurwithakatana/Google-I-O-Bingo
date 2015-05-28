@@ -62,7 +62,12 @@ class MainActivity : MvpActivity<MainPresenterImpl>(), MainView, AnkoLogger {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when(item?.getItemId()){
-            R.id.action_regenerate_board -> presenter.getBingo(getResources().getStringArray(R.array.bingo_entries), true)
+            R.id.action_regenerate_board -> {
+                alert("This will clear your current board", null) {
+                    positiveButton("Ok") { presenter.getBingo(getResources().getStringArray(R.array.bingo_entries), true) }
+                    negativeButton("Nevermind") {}
+                }.show()
+            }
         }
         return super<MvpActivity>.onOptionsItemSelected(item)
     }

@@ -7,8 +7,17 @@ import io.realm.Realm
 import java.util.ArrayList
 
 public class BingoRealmInteractor : BingoPersistanceInteractor {
+    override fun clearBingoEntries() {
+        val realm = BingoApplication.getInstance().realm
+        var results = realm.where(javaClass<BingoEntry>()).findAll()
+
+        realm.beginTransaction()
+        results.clear()
+        realm.commitTransaction()
+    }
+
     override fun toggleBingoClicked(bingoEntry: BingoEntry) {
-        BingoApplication.getInstance().realm.executeTransaction(object: Realm.Transaction {
+        BingoApplication.getInstance().realm.executeTransaction(object : Realm.Transaction {
             override fun execute(realm: Realm?) {
                 bingoEntry.setClicked(!bingoEntry.isClicked())
             }

@@ -17,12 +17,13 @@ public class MainPresenterImpl : AbstractPresenter<MainView>(), MainPresenter {
         persistenceInteractor.toggleBingoClicked(bingoEntry)
     }
 
-    override fun getBingo(strings: Array<String>) {
-        if (bingoEntryList == null) {
+    override fun getBingo(strings: Array<String>, generate : Boolean) {
+        if (bingoEntryList == null && !generate) {
             bingoEntryList = persistenceInteractor.getBingoEntries()
         }
 
-        if (bingoEntryList == null || bingoEntryList!!.isEmpty()) {
+        if (generate || (bingoEntryList == null || bingoEntryList!!.isEmpty())) {
+            persistenceInteractor.clearBingoEntries()
             bingoEntryList = generateBingo(strings)
         }
 

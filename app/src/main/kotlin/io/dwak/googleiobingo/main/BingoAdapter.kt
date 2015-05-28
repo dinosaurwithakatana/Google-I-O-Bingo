@@ -27,6 +27,12 @@ public class BingoAdapter(val context: Context) : RecyclerView.Adapter<BingoEntr
         notifyItemChanged(position)
     }
 
+    fun setItems(itemList : ArrayList<BingoEntry>){
+        list.clear()
+        list.addAll(itemList)
+        notifyDataSetChanged()
+    }
+
     companion object {
         public trait BingoAdapterItemClickListener {
             fun onItemClick(position: Int)

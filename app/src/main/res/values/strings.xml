@@ -3,6 +3,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_regenerate">Regenerate Board</string>
 
     <string-array name="bingo_entries">
         <item>Matias Duarte wearing a crazy shirt</item>

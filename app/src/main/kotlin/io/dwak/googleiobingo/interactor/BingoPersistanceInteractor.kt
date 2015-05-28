@@ -8,4 +8,5 @@ public trait BingoPersistanceInteractor {
     fun saveBingoEntries(entries : ArrayList<BingoEntry>)
     fun createBingoEntry(entryText : String, clicked : Boolean) : BingoEntry
     fun toggleBingoClicked(bingoEntry : BingoEntry)
+    fun clearBingoEntries()
 }

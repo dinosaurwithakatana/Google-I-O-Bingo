@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
+import android.view.Menu
+import android.view.MenuItem
 import butterknife.bindView
 import io.dwak.googleiobingo.R
 import io.dwak.googleiobingo.adapter
@@ -12,6 +14,7 @@ import io.dwak.googleiobingo.model.BingoEntry
 import io.dwak.googleiobingo.view.MainView
 import io.dwak.meh.base.MvpActivity
 import kotlinx.android.anko.AnkoLogger
+import kotlinx.android.anko.alert
 import java.util.ArrayList
 
 class MainActivity : MvpActivity<MainPresenterImpl>(), MainView, AnkoLogger {
@@ -49,7 +52,18 @@ class MainActivity : MvpActivity<MainPresenterImpl>(), MainView, AnkoLogger {
 
     override fun displayBingo(bingoEntries: ArrayList<BingoEntry>) {
         debug(bingoEntries)
-        adapter.list.addAll(bingoEntries)
+        adapter.setItems(bingoEntries)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        getMenuInflater().inflate(R.menu.menu_main, menu)
+        return super<MvpActivity>.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when(item?.getItemId()){
+            R.id.action_regenerate_board -> presenter.getBingo(getResources().getStringArray(R.array.bingo_entries), true)
+        }
+        return super<MvpActivity>.onOptionsItemSelected(item)
+    }
 }
